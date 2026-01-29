@@ -15,10 +15,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
     #[Route('/', name: 'article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, Request $request): Response
     {
+        $rechercheArticle = $request->query->get('a');
+
+        if($rechercheArticle) {
+            $articles = $articleRepository->findBySearch($rechercheArticle);
+        } else {
+            $articles = $articleRepository->findAll();
+        }
+
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $articles,
+            'query' => $rechercheArticle,
         ]);
     }
 
