@@ -22,10 +22,10 @@ class ArticleRepository extends ServiceEntityRepository
     
     public function findBySearch(string $value): array
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.title LIKE :val')
-            ->setParameter('val', '%' ,$value, "%")
-            ->orderBy('a.id', 'DESC')
+        return $this->createQueryBuilder('article')
+            ->andWhere('article.title LIKE :val')
+            ->setParameter('val', '%' .$value. "%")
+            ->orderBy('article.id', 'DESC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()

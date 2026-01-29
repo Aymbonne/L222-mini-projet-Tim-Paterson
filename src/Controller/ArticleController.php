@@ -17,7 +17,7 @@ class ArticleController extends AbstractController
     #[Route('/', name: 'article_index', methods: ['GET'])]
     public function index(ArticleRepository $articleRepository, Request $request): Response
     {
-        $rechercheArticle = $request->query->get('a');
+        $rechercheArticle = $request->query->get('article');
 
         if($rechercheArticle) {
             $articles = $articleRepository->findBySearch($rechercheArticle);
