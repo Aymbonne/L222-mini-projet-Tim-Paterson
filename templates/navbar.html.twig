@@ -21,10 +21,20 @@
           </ul>
         </li>
       </ul>
-      <form class="d-flex" action="{{path('article_index')}}" method="GET">
-        <input class="form-control me-2" type="search" name="article" placeholder="Rechercher un article.." aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-      </form>
+
+      <div class="d-flex align-items-center gap-3">
+
+        <form class="d-flex" action="{{path('article_index')}}" method="GET">
+          <input class="form-control me-2" type="search" name="article" placeholder="Rechercher un article.." aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+        </form>
+        {% if app.user %}
+          <span>Bonjour {{ app.user.userIdentifier }} !</span>
+          <a class="btn btn-outline-danger" href="{{path("app_logout")}}">Déconnexion</a>
+        {% else %}
+          <a class="btn btn-outline-primary" href="{{path("app_login")}}">Connexion</a>
+        {% endif %}
+      </div>
     </div>
   </div>
 </nav>
