@@ -25,15 +25,16 @@ transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Styles pour les cartes d'articles */
+
 .article-card {
-background-color: var(--card-bg);
-border-radius: 14px;
-box-shadow: 0 6px 15px var(--card-shadow);
-transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: var(--card-bg);
+  border-radius: 14px;
+  box-shadow: 0 6px 15px var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Effet au survol des cartes d'articles */
 .article-card:hover {
-transform: translateY(-8px) scale(1.02);
-box-shadow: 0 12px 30px var(--card-shadow);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 30px var(--card-shadow);
 }
