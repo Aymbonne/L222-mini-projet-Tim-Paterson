@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Bundle\SecurityBundle\Security; // Inutile, apparemment.
 
 #[Route('/article')]
 class ArticleController extends AbstractController
@@ -35,6 +35,10 @@ class ArticleController extends AbstractController
     #[Route('/new', name: 'article_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+		if (!$this->getUser()) {
+			return $this->render('forbidden.html.twig');
+		}
+		
         $article = new Article();
 		$article->setAuthor($this->getUser());
         $form = $this->createForm(ArticleType::class, $article);
@@ -64,6 +68,10 @@ class ArticleController extends AbstractController
     #[Route('/{id}/edit', name: 'article_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
+		if (!$this->getUser() || ($article->getAuthor() != $this->getUser() && $this->getUser()->getId() != 1)) {
+			return $this->render('forbidden.html.twig');
+		}
+		
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
@@ -82,6 +90,10 @@ class ArticleController extends AbstractController
     #[Route('/{id}', name: 'article_delete', methods: ['POST'])]
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
+		if (!$this->getUser() || ($article->getAuthor() != $this->getUser() && $this->getUser()->getId() != 1)) {
+			return $this->render('forbidden.html.twig');
+		}
+		
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
             $entityManager->remove($article);
             $entityManager->flush();
