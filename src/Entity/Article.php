@@ -23,6 +23,9 @@ class Article
     #[ORM\JoinColumn(nullable: false)]
     private $Category;
 
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    private ?User $author = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +63,18 @@ class Article
     public function setCategory(?Category $Category): self
     {
         $this->Category = $Category;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): static
+    {
+        $this->author = $author;
 
         return $this;
     }

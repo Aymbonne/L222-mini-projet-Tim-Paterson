@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Category</th>
+				<th>Author</th>
                 <th>Content</th>
                 <th>actions</th>
             </tr>
@@ -23,6 +24,11 @@
                 <td>
                     {% if article.Category.name is defined %}
                         {{ article.Category.name }}
+                    {% endif %}
+                </td>
+				<td>
+                    {% if article.Author.email is defined %}
+                        {{ article.Author.email }}
                     {% endif %}
                 </td>
                 <td>{{ article.content }}</td>
