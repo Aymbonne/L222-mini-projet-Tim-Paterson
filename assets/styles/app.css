@@ -1,3 +1,39 @@
+/* Ici nous définissons les variables CSS pour les thèmes clair et sombre */
+
+/* Le thème clair est défini par défaut, et le thème sombre est activé en ajoutant la classe 'dark' au body */
+:root {
+--bg-color: #ffffff;
+--text-color: #212529;
+--card-bg: #f8f9fa;
+--card-shadow: rgba(0, 0, 0, 0.15);
+}
+
+
+/* Thème sombre */
+body.dark {
+--bg-color: #121212;
+--text-color: #f1f1f1;
+--card-bg: #1e1e1e;
+--card-shadow: rgba(255, 255, 255, 0.12);
+}
+
+/* Application des variables aux éléments */
 body {
-    background-color: skyblue;
+background-color: var(--bg-color);
+color: var(--text-color);
+transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Styles pour les cartes d'articles */
+.article-card {
+background-color: var(--card-bg);
+border-radius: 14px;
+box-shadow: 0 6px 15px var(--card-shadow);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effet au survol des cartes d'articles */
+.article-card:hover {
+transform: translateY(-8px) scale(1.02);
+box-shadow: 0 12px 30px var(--card-shadow);
 }
