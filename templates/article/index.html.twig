@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}Liste des articles{% endblock %}
 
 {% block body %}
-    <h1>Article index</h1>
+    <h1>Liste des articles</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Category</th>
-				<th>Author</th>
-                <th>Content</th>
-                <th>actions</th>
+                <th>Titre</th>
+                <th>Catégorie</th>
+				<th>Auteur</th>
+                <th>Contenue</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -33,9 +33,9 @@
                 </td>
                 <td>{{ article.content }}</td>
                 <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('article_show', {'id': article.id}) }}">Voir plus</a>
 					{% if app.user and (article.Author == app.user or app.user.id == 1) %}
-						<a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+						<a href="{{ path('article_edit', {'id': article.id}) }}">Modifier</a>
 					{% endif %}
                 </td>
             </tr>
