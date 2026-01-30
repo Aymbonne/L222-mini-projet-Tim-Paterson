@@ -20,16 +20,26 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
     
-    public function findBySearch(string $value): array
+    public function findBySearch(string $value, string $article_filter): array
     {
-        return $this->createQueryBuilder('article')
-            ->andWhere('article.title LIKE :val')
-            ->setParameter('val', '%' .$value. "%")
-            ->orderBy('article.id', 'DESC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $article_requete = $this->createQueryBuilder('article');
+
+        if ($article_filter == 'titre') {
+            $article_requete->andWhere('article.title LIKE :val');
+
+        } elseif ($article_filter == 'categorie') {
+            $article_requete->leftJoin('article.Category', 'category')
+            ->andWhere('category.name LIKE :val');
+        } 
+        // else {
+        //     $article_requete->leftJoin('article.')
+        // }
+
+        return $article_requete ->setParameter('val', '%' .$value. "%")
+        ->orderBy('article.id', 'DESC')
+        ->setMaxResults(10)
+        ->getQuery()
+        ->getResult();
     }
 
     // /**
