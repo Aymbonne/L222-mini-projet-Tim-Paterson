@@ -24,16 +24,17 @@ class ArticleRepository extends ServiceEntityRepository
     {
         $article_requete = $this->createQueryBuilder('article');
 
-        if ($article_filter == 'titre') {
-            $article_requete->andWhere('article.title LIKE :val');
-
-        } elseif ($article_filter == 'categorie') {
+        if ($article_filter == 'categorie') {
             $article_requete->leftJoin('article.Category', 'category')
             ->andWhere('category.name LIKE :val');
-        } 
-        // else {
-        //     $article_requete->leftJoin('article.')
-        // }
+
+        } elseif ($article_filter == 'auteur') {
+            $article_requete->leftJoin('article.author', 'user')
+            ->andWhere('user.email LIKE :val');
+
+        } else {
+            $article_requete->andWhere('article.title LIKE :val');
+        }
 
         return $article_requete ->setParameter('val', '%' .$value. "%")
         ->orderBy('article.id', 'DESC')
