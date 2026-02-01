@@ -15,11 +15,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArticleController extends AbstractController
 {
     #[Route('/', name: 'article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository, Request $request): Response
+    public function index(ArticleRepository $articleRepository, Request $request): Response // Ajout de l'argument pour effectuer la requête
     {
-        $rechercheArticle = $request->query->get('search');
+        $rechercheArticle = $request->query->get('search'); // On récupère la recherche de l'utilisateur
 
-        $article_filter = $request->query->get('article_filter');
+        $article_filter = $request->query->get('article_filter'); // On récupère le filtre choisi
+
+        // On teste si le champs de recherche est vide ou non 
 
         if($rechercheArticle) {
             $articles = $articleRepository->findBySearch($rechercheArticle, $article_filter);
@@ -29,7 +31,6 @@ class ArticleController extends AbstractController
 
         return $this->render('article/index.html.twig', [
             'articles' => $articles,
-            // 'query' => $rechercheArticle,
         ]);
     }
 

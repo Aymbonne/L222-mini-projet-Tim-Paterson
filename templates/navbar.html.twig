@@ -41,6 +41,7 @@
                    Recherche </button>
           </div>
         </form>
+        {# On vérifie si l'utilisateur est identifié #}
         {% if app.user %}
           <span>Bonjour {{ app.user.userIdentifier }} !</span>
           <a class="btn btn-outline-danger" href="{{path("app_logout")}}">Déconnexion</a>

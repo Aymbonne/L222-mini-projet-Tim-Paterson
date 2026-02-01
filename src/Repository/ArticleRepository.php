@@ -24,6 +24,8 @@ class ArticleRepository extends ServiceEntityRepository
     {
         $article_requete = $this->createQueryBuilder('article');
 
+        // On modifie la requete selon le filtre choisi 
+
         if ($article_filter == 'categorie') {
             $article_requete->leftJoin('article.Category', 'category')
             ->andWhere('category.name LIKE :val');
@@ -33,6 +35,7 @@ class ArticleRepository extends ServiceEntityRepository
             ->andWhere('user.email LIKE :val');
 
         } else {
+            //  Option qui sera utilisée par défaut 
             $article_requete->andWhere('article.title LIKE :val');
         }
 
