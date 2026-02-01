@@ -1,11 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Category{% endblock %}
+{% block title %}Nouvelle Catégorie{% endblock %}
 
 {% block body %}
-    <h1>Create new Category</h1>
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        
+        <div class="text-center mb-5">
+            <h1 class="fw-black display-4 text-dark">Nouvelle Catégorie</h1>
+            <hr class="mx-auto bg-primary opacity-75" style="width: 60px; height: 3px;">
+        </div>
 
-    {{ include('category/_form.html.twig') }}
+        <div class="py-4">
+            {{ include('category/_form.html.twig') }}
+        </div>
 
-    <a href="{{ path('category_index') }}">Revenir à la liste</a>
+        <div class="text-center mt-5 border-top pt-4">
+            <a href="{{ path('category_index') }}" class="text-decoration-none text-muted">
+                <i class="fas fa-chevron-left me-2"></i> Annuler et revenir aux catégories
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}
