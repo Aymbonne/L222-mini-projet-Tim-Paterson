@@ -1,11 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Article{% endblock %}
+{% block title %}Nouvel Article{% endblock %}
 
 {% block body %}
-    <h1>Create new Article</h1>
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-7">
+        
+        <div class="mb-5">
+            <h1 class="fw-black display-4 mb-2">Nouvel Article</h1>
+            <p class="text-secondary lead">Remplissez les détails ci-dessous pour votre publication.</p>
+        </div>
+     
+        {{ include('article/_form.html.twig') }}
 
-    {{ include('article/_form.html.twig') }}
-
-    <a href="{{ path('article_index') }}">Revenir à la liste</a>
+        <div class="mt-5 border-top pt-4">
+            <a href="{{ path('article_index') }}" class="text-decoration-none text-muted">
+                <i class="fas fa-chevron-left me-2"></i> Annuler et revenir à la liste
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}
