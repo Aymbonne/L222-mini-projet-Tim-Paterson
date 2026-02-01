@@ -3,11 +3,23 @@
 {% block title %}Modifier l'article{% endblock %}
 
 {% block body %}
-    <h1>Modifier l'article</h1>
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-7">
+        
+        <div class="mb-5">
+            <h1 class="fw-black display-4 mb-2">Modifier l'article</h1>
+            <p class="text-secondary lead">Mise à jour des informations de votre publication.</p>
+        </div>
 
-    {{ include('article/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('article/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('article_index') }}">Revenir à la liste</a>
-
-    {{ include('article/_delete_form.html.twig') }}
+        <div class="mt-5 border-top pt-4 d-flex justify-content-between">
+            <a href="{{ path('article_index') }}" class="text-decoration-none text-muted">
+                <i class="fas fa-chevron-left me-2"></i> Annuler
+            </a>
+            
+            {{ include('article/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
 {% endblock %}
