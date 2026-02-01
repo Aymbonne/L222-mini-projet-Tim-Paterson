@@ -25,6 +25,7 @@ class CategoryController extends AbstractController
     #[Route('/new', name: 'category_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+		// Gestion des permissions
 		if (!$this->getUser()) {
 			return $this->render('forbidden.html.twig');
 		}
@@ -57,6 +58,7 @@ class CategoryController extends AbstractController
     #[Route('/{id}/edit', name: 'category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
+		// Gestion des permissions
 		if (!$this->getUser() || $this->getUser()->getId() != 1) {
 			return $this->render('forbidden.html.twig');
 		}
@@ -79,6 +81,7 @@ class CategoryController extends AbstractController
     #[Route('/{id}', name: 'category_delete', methods: ['POST'])]
     public function delete(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
+		// Gestion des permissions
 		if (!$this->getUser() || $this->getUser()->getId() != 1) {
 			return $this->render('forbidden.html.twig');
 		}
