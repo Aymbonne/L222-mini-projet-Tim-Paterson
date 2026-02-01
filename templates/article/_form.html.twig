@@ -1,4 +1,24 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="row g-4">
+        <div class="col-12">
+            <label class="fw-bold text-dark mb-2">Titre de l'article</label>
+            {{ form_widget(form.title, {'attr': {'class': 'form-control form-control-lg border-0 bg-white shadow-sm'}}) }}
+        </div>
+
+        <div class="col-md-6">
+            <label class="fw-bold text-dark mb-2">Catégorie</label>
+            {{ form_widget(form.category, {'attr': {'class': 'form-select border-0 bg-white shadow-sm'}}) }}
+        </div>
+
+        <div class="col-12">
+            <label class="fw-bold text-dark mb-2">Contenu</label>
+            {{ form_widget(form.content, {'attr': {'class': 'form-control border-0 bg-white shadow-sm', 'rows': 8}}) }}
+        </div>
+
+        <div class="col-12 mt-5">
+            <button class="btn btn-dark btn-lg w-100 py-3 shadow">
+                <i class="fas fa-check-circle me-2"></i> {{ button_label|default('Publier maintenant') }}
+            </button>
+        </div>
+    </div>
 {{ form_end(form) }}
